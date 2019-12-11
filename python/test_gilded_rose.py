@@ -35,5 +35,29 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEquals(0, items[0].quality)
 
+    def test_backstage_passes_increase_more_than_ten_days_sell_by(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 11, 1)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEquals(2, items[0].quality)
+
+    def test_backstage_passes_increase_quality_twice_between_six_and_ten_days(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 7, 1)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEquals(3, items[0].quality)
+
+    def test_backstage_passes_increase_quality_thrice_between_one_and_five_days(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 2, 1)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEquals(4, items[0].quality)
+
+    def test_backstage_passes_no_value_after_sell_by_date(self):
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 0, 1)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEquals(0, items[0].quality)
+
 if __name__ == '__main__':
     unittest.main()
