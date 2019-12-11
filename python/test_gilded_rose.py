@@ -9,6 +9,7 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEquals(49, items[0].quality)
+        self.assertEquals(6, items[0].sell_in)
 
     def test_double_quality_decay_after_sell_by(self):
         items = [Item("foo", 0, 50)]
@@ -27,6 +28,12 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEquals(50, items[0].quality)
+
+    def test_quality_cant_be_negative(self):
+        items = [Item("foo", 0, 0)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEquals(0, items[0].quality)
 
 if __name__ == '__main__':
     unittest.main()
