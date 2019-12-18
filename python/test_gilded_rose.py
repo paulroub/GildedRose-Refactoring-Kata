@@ -66,5 +66,11 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(80, items[0].quality)
         self.assertEquals(10, items[0].sell_in)
 
+    def test_unexpired_conjured_item_degrades_twice_as_fast(self):
+        items =[Item("Conjured", 10, 40)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEquals(38, items[0].quality)
+
 if __name__ == '__main__':
     unittest.main()
