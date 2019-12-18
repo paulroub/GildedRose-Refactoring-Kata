@@ -42,6 +42,7 @@ class GildedRose(object):
                     if item.quality < 50:
                         item.quality = item.quality + degradation_rate
 
+            item.quality = max(0, item.quality)
 
 class Item:
     def __init__(self, name, sell_in, quality):
