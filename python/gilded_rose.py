@@ -17,11 +17,15 @@ class GildedRose(object):
             else:
                 degradation_rate = 1
 
-
             if item.name == "Aged Brie":
-                item.quality = item.quality + 1
+                if item.sell_in >= 0:
+                    item.quality = item.quality + degradation_rate
+                else:
+                    item.quality = item.quality + degradation_rate * 2
             elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                if item.sell_in < 5:
+                if item.sell_in < 0:
+                    item.quality = 0
+                elif item.sell_in < 5:
                     item.quality = item.quality + 3
                 elif item.sell_in < 10:
                     item.quality = item.quality + 2
@@ -32,13 +36,6 @@ class GildedRose(object):
                     item.quality = item.quality - degradation_rate
                 else:
                     item.quality = item.quality - degradation_rate * 2
-
-
-            if item.sell_in < 0:
-                if item.name == "Aged Brie":
-                    item.quality = item.quality + degradation_rate
-                elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-                    item.quality = 0
 
             item.quality = max(0, item.quality)
             item.quality = min(50, item.quality)
