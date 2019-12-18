@@ -42,13 +42,13 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEquals(2, items[0].quality)
 
     def test_backstage_passes_increase_quality_twice_between_six_and_ten_days(self):
-        items = [Item("Backstage passes to a TAFKAL80ETC concert", 7, 1)]
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 6, 1)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEquals(3, items[0].quality)
 
     def test_backstage_passes_increase_quality_thrice_between_one_and_five_days(self):
-        items = [Item("Backstage passes to a TAFKAL80ETC concert", 2, 1)]
+        items = [Item("Backstage passes to a TAFKAL80ETC concert", 5, 1)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEquals(4, items[0].quality)
